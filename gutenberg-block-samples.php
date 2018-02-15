@@ -10,7 +10,7 @@
  * Plugin Name:       Gutenberg Block Samples
  * Plugin URI:        https://github.com/eudesgit/gutenberg-sample-blocks
  * Description:       Simple plugin that adds Gutenberg block samples
- * Version:           0.1.0
+ * Version:           0.2.0
  * Author:            Eudes
  * Author URI:        https://github.com/eudesgit/
  * License:           GPL2
@@ -80,33 +80,42 @@ class Gutenberg_Block_Samples {
         
     }
     
-    //TODO: doc block        
+    /**
+     * Registers the block JS script and its styles
+     *
+     * @since    1.0.0
+     * @return void
+     */
     public function register_simple_block_action ( ) {
 
+        // The JS block script
         wp_enqueue_script( 
             $this->plugin_name . '-block-simple', 
             plugin_dir_url( __FILE__ ) . 'block-simple/block.build.js', 
-            ['wp-blocks', 'wp-i18n', 'wp-element']
+            ['wp-blocks', 'wp-i18n', 'wp-element'] // Required scripts for the block
         );
         
+        // The block style for the editor
         wp_register_style(
             $this->plugin_name . '-block-simple-editor-style',
             plugin_dir_url( __FILE__ ) . 'block-simple/css/editor.css', 
-            ['wp-edit-blocks']
+            ['wp-edit-blocks'] // Style for the editor
         );
 
+        // The block style for the site
         wp_register_style(
             $this->plugin_name . '-block-simple-site-style',
             plugin_dir_url( __FILE__ ) . 'block-simple/css/site.css', 
-            ['wp-blocks']
+            ['wp-blocks'] // Style for the site
         );     
         
+        // Registering the block
         register_block_type(
             'gutenberg-block-samples/block-simple', 
             [
-                'style' => $this->plugin_name . '-block-simple-site-style',
-                'editor_style' => $this->plugin_name . '-block-simple-editor-style',
-                'editor_script' => $this->plugin_name . '-block-simple',
+                'style' => $this->plugin_name . '-block-simple-site-style', // Site block style
+                'editor_style' => $this->plugin_name . '-block-simple-editor-style', // Editor block style
+                'editor_script' => $this->plugin_name . '-block-simple',  // The block script
             ]
         );
 
