@@ -14,7 +14,7 @@
  * Author:            Eudes
  * Author URI:        https://github.com/eudesgit/
  * License:           GPL2
- * Text Domain:       gutenberg-block-samples
+ * Text Domain:       gutenberg-blocks-sample
  */
 
 // If this file is called directly, abort.
@@ -22,7 +22,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-class Gutenberg_Block_Samples {
+class Gutenberg_Blocks_Sample {
 
 	/**
 	 * The unique identifier of this plugin (slug).
@@ -53,7 +53,7 @@ class Gutenberg_Block_Samples {
 	 */
 	public function __construct() {
         
-        $this->plugin_name = 'gutenberg-block-samples';
+        $this->plugin_name = 'gutenberg-blocks-sample';
 
         $this->actions = [];
 		$this->filters = [];
@@ -111,7 +111,7 @@ class Gutenberg_Block_Samples {
         
         // Registering the block
         register_block_type(
-            'gutenberg-block-samples/block-simple', 
+            'gutenberg-blocks-sample/block-simple', 
             [
                 'style' => $this->plugin_name . '-block-simple-site-style', // Site block style
                 'editor_style' => $this->plugin_name . '-block-simple-editor-style', // Editor block style
@@ -192,5 +192,5 @@ class Gutenberg_Block_Samples {
 /*
  * BEGIN
  */
-$gsb = new Gutenberg_Block_Samples();
+$gsb = new Gutenberg_Blocks_Sample();
 $gsb->run();

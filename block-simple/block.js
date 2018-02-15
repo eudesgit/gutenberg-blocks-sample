@@ -10,7 +10,7 @@ const { registerBlockType } = wp.blocks;
 
 // The function that registers and creates a block
 registerBlockType(
-    'gutenberg-block-samples/block-simple', // Name of the block with a required name space
+    'gutenberg-blocks-sample/block-simple', // Name of the block with a required name space
     {
 	    title: __('Simple Red Title (Sample)'), // Title, displayed in the editor
 	    icon: 'universal-access-alt', // Icon, from WP icons
