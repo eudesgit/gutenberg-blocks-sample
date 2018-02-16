@@ -120,9 +120,9 @@ class Gutenberg_Blocks_Sample {
         register_block_type(
             $block_name,  // Block name
             [
-                'style' => $this->plugin_name . '-block-simple-site-style', // Site block style slug
-                'editor_style' => $this->plugin_name . '-block-simple-editor-style', // Editor block style slug
-                'editor_script' => $this->plugin_name . '-block-simple',  // The block script slug
+                'style' => $site_style_slug, // Site block style slug
+                'editor_style' => $editor_style_slug, // Editor block style slug
+                'editor_script' => $script_slug,  // The block script slug
             ]
         );
 
@@ -145,21 +145,21 @@ class Gutenberg_Blocks_Sample {
         // The JS block script
          wp_enqueue_script( 
             $script_slug, 
-            plugin_dir_url( __FILE__ ) . 'block-simple/block.build.js', 
+            plugin_dir_url( __FILE__ ) . 'block-editable/block.build.js', 
             ['wp-blocks', 'wp-i18n', 'wp-element'] // Required scripts for the block
         );
         
         // The block style for the editor
         wp_register_style(
             $editor_style_slug,
-            plugin_dir_url( __FILE__ ) . 'block-simple/css/editor.css', 
+            plugin_dir_url( __FILE__ ) . 'block-editable/css/editor.css', 
             ['wp-edit-blocks'] // Style for the editor
         );
 
         // The block style for the site
         wp_register_style(
             $site_style_slug,
-            plugin_dir_url( __FILE__ ) . 'block-simple/css/site.css', 
+            plugin_dir_url( __FILE__ ) . 'block-editable/css/site.css', 
             ['wp-blocks'] // Style for the site
         );     
         
@@ -167,9 +167,9 @@ class Gutenberg_Blocks_Sample {
         register_block_type(
             $block_name,  // Block name
             [
-                'style' => $this->plugin_name . '-block-simple-site-style', // Site block style slug
-                'editor_style' => $this->plugin_name . '-block-simple-editor-style', // Editor block style slug
-                'editor_script' => $this->plugin_name . '-block-simple',  // The block script slug
+                'style' => $site_style_slug, // Site block style slug
+                'editor_style' => $editor_style_slug, // Editor block style slug
+                'editor_script' => $script_slug,  // The block script slug
             ]
         );
 

@@ -1,5 +1,14 @@
 .wp-block-gutenberg-blocks-sample-block-editable {
+    font-size: 1em;
     color: white;
-    background: red;
-    padding: 20px;
+    background-color: gray;
+    padding: 10px;
+}
+
+#block-editable-box label {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
+#block-editable-box p {
+    font-weight: bold;
 }
