@@ -92,35 +92,36 @@ class Gutenberg_Blocks_Sample {
         $block_name = 'gutenberg-blocks-sample/block-simple';
 
         $script_slug = $this->plugin_name . '-block-simple';
+        $style_slug = $this->plugin_name . '-block-simple-style';
         $editor_style_slug = $this->plugin_name . '-block-simple-editor-style';
-        $site_style_slug = $this->plugin_name . '-block-simple-site-style';
-
+        
         // The JS block script
         wp_enqueue_script( 
             $script_slug, 
             plugin_dir_url( __FILE__ ) . 'block-simple/block.build.js', 
             ['wp-blocks', 'wp-i18n', 'wp-element'] // Required scripts for the block
         );
-        
-        // The block style for the editor
+
+        // The block style
+        // It will be loaded on the editor and on the site
+        wp_register_style(
+            $style_slug,
+            plugin_dir_url( __FILE__ ) . 'block-simple/css/style.css', 
+            ['wp-blocks'] // Style for the site
+        );            
+
+        // The block style for the editor only
         wp_register_style(
             $editor_style_slug,
             plugin_dir_url( __FILE__ ) . 'block-simple/css/editor.css', 
             ['wp-edit-blocks'] // Style for the editor
         );
-
-        // The block style for the site
-        wp_register_style(
-            $site_style_slug,
-            plugin_dir_url( __FILE__ ) . 'block-simple/css/site.css', 
-            ['wp-blocks'] // Style for the site
-        );     
         
         // Registering the block
         register_block_type(
             $block_name,  // Block name
             [
-                'style' => $site_style_slug, // Site block style slug
+                'style' => $style_slug, // General block style slug
                 'editor_style' => $editor_style_slug, // Editor block style slug
                 'editor_script' => $script_slug,  // The block script slug
             ]
@@ -139,8 +140,8 @@ class Gutenberg_Blocks_Sample {
         $block_name = 'gutenberg-blocks-sample/block-editable';
 
         $script_slug = $this->plugin_name . '-block-editable';
+        $style_slug = $this->plugin_name . '-block-editable-style';
         $editor_style_slug = $this->plugin_name . '-block-editable-editor-style';
-        $site_style_slug = $this->plugin_name . '-block-editable-site-style';
 
         // The JS block script
          wp_enqueue_script( 
@@ -148,26 +149,27 @@ class Gutenberg_Blocks_Sample {
             plugin_dir_url( __FILE__ ) . 'block-editable/block.build.js', 
             ['wp-blocks', 'wp-i18n', 'wp-element'] // Required scripts for the block
         );
-        
-        // The block style for the editor
+
+        // The block style
+        // It will be loaded on the editor and on the site
+        wp_register_style(
+            $style_slug,
+            plugin_dir_url( __FILE__ ) . 'block-editable/css/style.css', 
+            ['wp-blocks'] // Style for the site
+        );            
+
+        // The block style for the editor only
         wp_register_style(
             $editor_style_slug,
             plugin_dir_url( __FILE__ ) . 'block-editable/css/editor.css', 
             ['wp-edit-blocks'] // Style for the editor
         );
-
-        // The block style for the site
-        wp_register_style(
-            $site_style_slug,
-            plugin_dir_url( __FILE__ ) . 'block-editable/css/site.css', 
-            ['wp-blocks'] // Style for the site
-        );     
         
         // Registering the block
         register_block_type(
             $block_name,  // Block name
             [
-                'style' => $site_style_slug, // Site block style slug
+                'style' => $style_slug, // General block style slug
                 'editor_style' => $editor_style_slug, // Editor block style slug
                 'editor_script' => $script_slug,  // The block script slug
             ]
