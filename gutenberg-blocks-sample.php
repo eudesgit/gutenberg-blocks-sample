@@ -111,11 +111,11 @@ class Gutenberg_Blocks_Sample {
         
         // Registering the block
         register_block_type(
-            'gutenberg-blocks-sample/block-simple', 
+            'gutenberg-blocks-sample/block-simple',  // Block name
             [
-                'style' => $this->plugin_name . '-block-simple-site-style', // Site block style
-                'editor_style' => $this->plugin_name . '-block-simple-editor-style', // Editor block style
-                'editor_script' => $this->plugin_name . '-block-simple',  // The block script
+                'style' => $this->plugin_name . '-block-simple-site-style', // Site block style slug
+                'editor_style' => $this->plugin_name . '-block-simple-editor-style', // Editor block style slug
+                'editor_script' => $this->plugin_name . '-block-simple',  // The block script slug
             ]
         );
 

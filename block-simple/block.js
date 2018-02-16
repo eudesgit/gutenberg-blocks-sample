@@ -28,7 +28,9 @@ registerBlockType(
          * @return JSX ECMAScript Markup for the editor 
          */
         edit ( {className} ) {
-		    return <p className={className}>This custom block will create a red title</p>;
+		    return (
+                <p className={className}>This custom block will create a red title</p>
+            );
         },
  
         /**
@@ -39,6 +41,9 @@ registerBlockType(
          * @return JSX ECMAScript Markup for the site
          */
         save ( ) {
-            return <h1>The custom red title :)</h1>;
+            return (
+                <h1>The custom red title :)</h1>
+            );
         },
-} );
+    } 
+);
