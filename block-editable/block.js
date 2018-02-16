@@ -35,19 +35,17 @@ registerBlockType(
 
         /**
          * edit function
-         * TODO:
+         * 
          * Makes the markup for the editor interface.
          * 
-         * @param {object} className 
-         *  Automatic CSS class. Based on the block name:
-         *  gutenberg-block-samples-block-simple
+         * @param object props Let's you bind markup and attributes as well as other controls
          * 
          * @return JSX ECMAScript Markup for the editor 
          */
         edit ( props ) {
             
-            var link_text = props.attributes.link_text
-            var link_url = props.attributes.link_url
+            var link_text = props.attributes.link_text // To bind attribute link_text
+            var link_url = props.attributes.link_url // To bind attribute link_url
             
             const onChangeContentURL = newContent => {
                 props.setAttributes( { link_url: newContent } );
@@ -58,39 +56,38 @@ registerBlockType(
             };      
               
             return (
-                <div id="block-editable-box">
+                <div id="block-editable-box"> {/* You have to have a wrapper tag when your markup has more than 1 tag */}
                     <p>Sample Link Block</p>
                     <label>Name:</label>
                     <Editable
-                        className={ props.className }
-                        onChange={ onChangeContentName }
-                        value={ link_text }
+                        className={props.className} // Automatic class: gutenberg-blocks-sample-block-editable
+                        onChange={onChangeContentName} // onChange event callback
+                        value={link_text} // Binding
                         placeholder="Name of the link"
                     />
                     <label>URL:</label>
                     <Editable
-                        className={ props.className }
-                        onChange={ onChangeContentURL }
-                        value={ link_url }
+                        className={props.className} // Automatic class: gutenberg-blocks-sample-block-editable
+                        onChange={onChangeContentURL} // onChange event callback
+                        value={ link_url } // Binding
                         placeholder="URL of the link"
                     />                
                 </div>
-            );
+            )
         },
  
         /**
          * save function
          * 
-         * // TODO:
-         * 
          * Makes the markup that will be rendered on the site page
          * 
+         * @param object props Let's you bind markup and attributes as well as other controls
          * @return JSX ECMAScript Markup for the site
          */
         save ( props ) {
             return (
                 <a href={props.attributes.link_url}>{props.attributes.link_text}</a>
-            );
+            )
         },
     } 
 );
