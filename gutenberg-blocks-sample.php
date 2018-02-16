@@ -76,42 +76,49 @@ class Gutenberg_Blocks_Sample {
 	 */
 	private function hooks ( ) {
 
-		$this->add_action( 'init', $this, 'register_simple_block_action' );  
+        $this->add_action('init', $this, 'register_simple_block_action');  
+        $this->add_action('init', $this, 'register_editable_block_action');
         
     }
     
     /**
-     * Registers the block JS script and its styles
+     * Registers the simple block JS script and its styles
      *
      * @since    1.0.0
      * @return void
      */
     public function register_simple_block_action ( ) {
 
+        $block_name = 'gutenberg-blocks-sample/block-simple';
+
+        $script_slug = $this->plugin_name . '-block-simple';
+        $editor_style_slug = $this->plugin_name . '-block-simple-editor-style';
+        $site_style_slug = $this->plugin_name . '-block-simple-site-style';
+
         // The JS block script
         wp_enqueue_script( 
-            $this->plugin_name . '-block-simple', 
+            $script_slug, 
             plugin_dir_url( __FILE__ ) . 'block-simple/block.build.js', 
             ['wp-blocks', 'wp-i18n', 'wp-element'] // Required scripts for the block
         );
         
         // The block style for the editor
         wp_register_style(
-            $this->plugin_name . '-block-simple-editor-style',
+            $editor_style_slug,
             plugin_dir_url( __FILE__ ) . 'block-simple/css/editor.css', 
             ['wp-edit-blocks'] // Style for the editor
         );
 
         // The block style for the site
         wp_register_style(
-            $this->plugin_name . '-block-simple-site-style',
+            $site_style_slug,
             plugin_dir_url( __FILE__ ) . 'block-simple/css/site.css', 
             ['wp-blocks'] // Style for the site
         );     
         
         // Registering the block
         register_block_type(
-            'gutenberg-blocks-sample/block-simple',  // Block name
+            $block_name,  // Block name
             [
                 'style' => $this->plugin_name . '-block-simple-site-style', // Site block style slug
                 'editor_style' => $this->plugin_name . '-block-simple-editor-style', // Editor block style slug
@@ -120,6 +127,53 @@ class Gutenberg_Blocks_Sample {
         );
 
     }
+
+    /**
+     * Registers the editable block JS script and its styles
+     *
+     * @since    1.0.0
+     * @return void
+     */
+    public function register_editable_block_action ( ) {
+
+        $block_name = 'gutenberg-blocks-sample/block-editable';
+
+        $script_slug = $this->plugin_name . '-block-editable';
+        $editor_style_slug = $this->plugin_name . '-block-editable-editor-style';
+        $site_style_slug = $this->plugin_name . '-block-editable-site-style';
+
+        // The JS block script
+         wp_enqueue_script( 
+            $script_slug, 
+            plugin_dir_url( __FILE__ ) . 'block-simple/block.build.js', 
+            ['wp-blocks', 'wp-i18n', 'wp-element'] // Required scripts for the block
+        );
+        
+        // The block style for the editor
+        wp_register_style(
+            $editor_style_slug,
+            plugin_dir_url( __FILE__ ) . 'block-simple/css/editor.css', 
+            ['wp-edit-blocks'] // Style for the editor
+        );
+
+        // The block style for the site
+        wp_register_style(
+            $site_style_slug,
+            plugin_dir_url( __FILE__ ) . 'block-simple/css/site.css', 
+            ['wp-blocks'] // Style for the site
+        );     
+        
+        // Registering the block
+        register_block_type(
+            $block_name,  // Block name
+            [
+                'style' => $this->plugin_name . '-block-simple-site-style', // Site block style slug
+                'editor_style' => $this->plugin_name . '-block-simple-editor-style', // Editor block style slug
+                'editor_script' => $this->plugin_name . '-block-simple',  // The block script slug
+            ]
+        );
+
+    }    
 
 	/**
 	 * Add a new action to the collection to be registered with WordPress.
@@ -151,13 +205,13 @@ class Gutenberg_Blocks_Sample {
 	 */
 	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
 
-		$hooks[] = array(
+		$hooks[] = [
 			'hook'          => $hook,
 			'component'     => $component,
 			'callback'      => $callback,
 			'priority'      => $priority,
 			'accepted_args' => $accepted_args
-		);
+        ];
 
 		return $hooks;
 
