@@ -24,7 +24,6 @@ registerBlockType(
             link_text: {
                 selector: 'a', // tag a
                 source: 'children',  // children of a, to bind the link text
-                type: 'array', // type array
             },
             link_url: {
                 selector: 'a',  // tag a
@@ -69,7 +68,7 @@ registerBlockType(
                     <Editable
                         className={props.className} // Automatic class: gutenberg-blocks-sample-block-editable
                         onChange={onChangeContentURL} // onChange event callback
-                        value={ link_url } // Binding
+                        value={link_url} // Binding
                         placeholder="URL of the link"
                     />                
                 </div>
