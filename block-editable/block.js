@@ -6,7 +6,7 @@
 
 // Required components
 const { __ } = wp.i18n;
-const { registerBlockType, Editable, source } = wp.blocks;
+const { registerBlockType, RichText, source } = wp.blocks;
 
 // The function that registers and creates a block
 registerBlockType(
@@ -47,25 +47,25 @@ registerBlockType(
             var link_url = props.attributes.link_url // To bind attribute link_url
             
             const onChangeContentURL = newContent => {
-                props.setAttributes( { link_url: newContent } );
-            };
+                props.setAttributes({link_url: newContent})
+            }
     
             const onChangeContentName = newContent => {
-                props.setAttributes( { link_text: newContent } );
-            };      
+                props.setAttributes({link_text: newContent})
+            }    
               
             return (
                 <div id="block-editable-box"> {/* You have to have a wrapper tag when your markup has more than 1 tag */}
                     <p>Sample Link Block</p>
                     <label>Name:</label>
-                    <Editable
+                    <RichText
                         className={props.className} // Automatic class: gutenberg-blocks-sample-block-editable
                         onChange={onChangeContentName} // onChange event callback
                         value={link_text} // Binding
                         placeholder="Name of the link"
                     />
                     <label>URL:</label>
-                    <Editable
+                    <RichText
                         className={props.className} // Automatic class: gutenberg-blocks-sample-block-editable
                         onChange={onChangeContentURL} // onChange event callback
                         value={link_url} // Binding

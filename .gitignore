@@ -1,4 +1,2 @@
-block-simple/node_modules
-block-simple/block.build.js
-block-editable/node_modules
-block-editable/block.build.js
+block-*/node_modules
+block-*/block.build.js
