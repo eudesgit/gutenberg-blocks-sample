@@ -8,7 +8,22 @@
 const { __ } = wp.i18n;
 const { registerBlockType, RichText, source } = wp.blocks;
 
-// The function that registers and creates a block
+/**
+ * Registers and creates block
+ * 
+ * Compatible with Gutenberg 2.2.0+
+ * 
+ * @param Name Name of the block with a required name space
+ * @param ObjectArgs Block configuration {
+ *      title - Title, displayed in the editor
+ *      icon - Icon, from WP icons
+ *      category - Block category, where the block will be added in the editor
+ *      attributes - Object with all binding elements between the view HTML and the functions 
+ *      edit function - Returns the markup for the editor interface.
+ *      save function - Returns the markup that will be rendered on the site page
+ * }
+ * 
+ */
 registerBlockType(
     'gutenberg-blocks-sample/block-editable', // Name of the block with a required name space
     {
@@ -17,8 +32,8 @@ registerBlockType(
 	    category: 'common', // Block category, where the block will be added in the editor
     
         /**
-         * Object with all DOM elements that will be binded
-         * into an attribute
+         * Object with all binding elements between the view HTML and the functions
+         * Let's you bind data from DOM elements and storage attributes
          */
         attributes: {
             link_text: {
@@ -46,13 +61,13 @@ registerBlockType(
             var link_text = props.attributes.link_text // To bind attribute link_text
             var link_url = props.attributes.link_url // To bind attribute link_url
             
-            const onChangeContentURL = newContent => {
-                props.setAttributes({link_url: newContent})
+            function onChangeContentURL ( content ) {
+                props.setAttributes({link_url: content})
             }
-    
-            const onChangeContentName = newContent => {
-                props.setAttributes({link_text: newContent})
-            }    
+
+            function onChangeContentName ( content ) {
+                props.setAttributes({link_text: content})
+            }              
               
             return (
                 <div id="block-editable-box"> {/* You have to have a wrapper tag when your markup has more than 1 tag */}
