@@ -79,6 +79,7 @@ class Gutenberg_Blocks_Sample {
         $this->add_action('init', $this, 'register_simple_block_action');  
         $this->add_action('init', $this, 'register_editable_block_action');
         $this->add_action('init', $this, 'register_inspected_block_action');
+        $this->add_action('init', $this, 'register_dynamic_block_action');
         
     }
     
@@ -240,6 +241,82 @@ class Gutenberg_Blocks_Sample {
         );
 
     }        
+
+    /**
+     * Registers the dynamic server side block JS script and its styles
+     *
+     * @since    1.0.0
+     * @return void
+     */
+    public function register_dynamic_block_action ( ) {
+
+        $block_name = 'block-dynamic';
+
+        $block_namespace = 'gutenberg-blocks-sample/' . $block_name;
+
+        $script_slug = $this->plugin_name . '-' . $block_name;
+        $style_slug = $this->plugin_name . '-' . $block_name . '-style';
+        $editor_style_slug = $this->plugin_name . '-' . $block_name . '-editor-style';
+
+        // The JS block script
+         wp_enqueue_script( 
+            $script_slug, 
+            plugin_dir_url( __FILE__ ) . $block_name . '/block.build.js', 
+            ['wp-blocks', 'wp-i18n', 'wp-element'], // Required scripts for the block
+            filemtime(plugin_dir_path(__FILE__) . $block_name . '/block.build.js')
+        );
+
+        // The block style
+        // It will be loaded on the editor and on the site
+        wp_register_style(
+            $style_slug,
+            plugin_dir_url( __FILE__ )  . $block_name . '/css/style.css', 
+            ['wp-blocks'], // General style
+            filemtime(plugin_dir_path(__FILE__) . $block_name . '/css/style.css')
+        );            
+
+        // The block style for the editor only
+        wp_register_style(
+            $editor_style_slug,
+            plugin_dir_url( __FILE__ ) . $block_name . '/css/editor.css', 
+            ['wp-edit-blocks'], // Style for the editor
+            filemtime(plugin_dir_path(__FILE__) . $block_name . '/css/editor.css')
+        );
+        
+        // Registering the block
+        register_block_type(
+            $block_namespace,  // Block name with namespace
+            [
+                'style' => $style_slug, // General block style slug
+                'editor_style' => $editor_style_slug, // Editor block style slug
+                'editor_script' => $script_slug,  // The block script slug
+                'render_callback' => [$this, 'block_dynamic_render_cb'], // The render callback
+            ]
+        );
+
+    }
+
+    /**
+     * CALLBACK
+     * 
+     * Render callback for the dynamic block.
+     * 
+     * Instead of rendering from the block's save(), this callback will render the front-end
+     *
+     * @since    1.0.0
+     * @param $att Attributes from the JS block
+     * @return string Rendered HTML
+     */
+    public function block_dynamic_render_cb ( $att ) {
+
+        // Coming from RichText, each line is an array's element
+        $soma = $att['number1'][0] + $att['number2'][0]; 
+
+        $html = "<h1>$soma</h1>";
+
+        return $html;
+
+    }
 
 	/**
 	 * Add a new action to the collection to be registered with WordPress.

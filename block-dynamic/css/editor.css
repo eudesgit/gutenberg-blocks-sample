@@ -1,0 +1,10 @@
+.wp-block-gutenberg-blocks-sample-block-dynamic {
+    font-size: 1.5em;
+    color: white;
+    background-color: red;
+    padding: 10px;
+}
+
+#block-dynamic-box h1 {
+    color: #012169;
+}

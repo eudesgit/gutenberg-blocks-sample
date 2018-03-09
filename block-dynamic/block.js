@@ -1,12 +1,12 @@
 /** 
- * Simple editable block sample
+ * Simple dynamic block sample
  * 
- * Creates an editable block to make a link
+ * Creates a block that doesn't render the save side, because it's rendered on PHP
  */
 
 // Required components
 const { __ } = wp.i18n;
-const { registerBlockType, RichText, source } = wp.blocks;
+const { registerBlockType, RichText } = wp.blocks;
 
 /**
  * Registers and creates block
@@ -25,9 +25,9 @@ const { registerBlockType, RichText, source } = wp.blocks;
  * 
  */
 registerBlockType(
-    'gutenberg-blocks-sample/block-editable', // Name of the block with a required name space
+    'gutenberg-blocks-sample/block-dynamic', // Name of the block with a required name space
     {
-	    title: __('Editable Link (Sample)'), // Title, displayed in the editor
+	    title: __('Dynamic Sum Block (Sample)'), // Title, displayed in the editor
 	    icon: 'universal-access-alt', // Icon, from WP icons
 	    category: 'common', // Block category, where the block will be added in the editor
     
@@ -36,14 +36,17 @@ registerBlockType(
          * Let's you bind data from DOM elements and storage attributes
          */
         attributes: {
-            link_text: {
-                selector: 'a', // tag a
-                source: 'children',  // children of a, to bind the link text
+            // Number 1
+            // It doesn't use source attribute, so it doesn't come from save() rendered DOM
+            // They'll be saved on the block's source code as a JSON
+            number1: {
+                type: 'string',
             },
-            link_url: {
-                selector: 'a',  // tag a
-                source: 'attribute', // attribute of the tag
-                attribute: 'href', // attribute href, to bind the href of the link
+            // Number 2
+            // It doesn't use source attribute, so it doesn't come from save() rendered DOM
+            // They'll be saved on the block's source code as a JSON
+            number2: {
+                type: 'string',
             },
         },
 
@@ -58,33 +61,34 @@ registerBlockType(
          */
         edit ( props ) {
             
-            var link_text = props.attributes.link_text // To bind attribute link_text
-            var link_url = props.attributes.link_url // To bind attribute link_url
+            var number1 = props.attributes.number1 // To bind attribute number 1
+            var number2 = props.attributes.number2 // To bind attribute number 2
             
-            function onChangeContentURL ( content ) {
-                props.setAttributes({link_url: content})
+            function onChangeNumber1 ( content ) {
+                props.setAttributes({number1: content})
             }
 
-            function onChangeContentName ( content ) {
-                props.setAttributes({link_text: content})
+            function onChangeNumber2 ( content ) {
+                props.setAttributes({number2: content})
             }              
               
             return (
-                <div id="block-editable-box"> {/* You have to have a wrapper tag when your markup has more than 1 tag */}
-                    <p>Sample Link Block</p>
-                    <label>Name:</label>
+                <div id="block-dynamic-box"> {/* You have to have a wrapper tag when your markup has more than 1 tag */}
+                    <h1>Sample dynamic PHP server-side block</h1>
+                    <p>This block will sum the numbers and render HTML on the server side</p>
+                    <label>Number 1:</label>
                     <RichText
                         className={props.className} // Automatic class: gutenberg-blocks-sample-block-editable
-                        onChange={onChangeContentName} // onChange event callback
-                        value={link_text} // Binding
-                        placeholder="Name of the link"
+                        onChange={onChangeNumber1} // onChange event callback
+                        value={number1} // Binding
+                        placeholder="First number"
                     />
-                    <label>URL:</label>
+                    <label>Number 2:</label>
                     <RichText
                         className={props.className} // Automatic class: gutenberg-blocks-sample-block-editable
-                        onChange={onChangeContentURL} // onChange event callback
-                        value={link_url} // Binding
-                        placeholder="URL of the link"
+                        onChange={onChangeNumber2} // onChange event callback
+                        value={number2} // Binding
+                        placeholder="Second number"
                     />                
                 </div>
             )
@@ -95,13 +99,13 @@ registerBlockType(
          * 
          * Makes the markup that will be rendered on the site page
          * 
+         * In this case, it does not render, because this block is rendered on server side
+         * 
          * @param object props Let's you bind markup and attributes as well as other controls
          * @return JSX ECMAScript Markup for the site
          */
         save ( props ) {
-            return (
-                <a href={props.attributes.link_url}>{props.attributes.link_text}</a>
-            )
+            return null // See PHP side. This block is rendered on PHP.
         },
     } 
 );
