@@ -8,7 +8,12 @@
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
-// The function that registers and creates a block
+/**
+ * Registers and creates block
+ * 
+ * Compatible with Gutenberg 2.2.0+
+ * 
+ */
 registerBlockType(
     'gutenberg-blocks-sample/block-simple', // Name of the block with a required name space
     {
@@ -28,7 +33,7 @@ registerBlockType(
          * @return JSX ECMAScript Markup for the editor 
          */
         edit ( {className} ) {
-		    return (
+		    return ( // This will be displayed on the editor
                 <p className={className}>This custom block will create a red title</p>
             );
         },
@@ -41,7 +46,7 @@ registerBlockType(
          * @return JSX ECMAScript Markup for the site
          */
         save ( ) {
-            return (
+            return ( // This will be displayed on the website page
                 <h1>The custom red title :)</h1>
             );
         },

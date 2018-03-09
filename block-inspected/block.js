@@ -126,7 +126,7 @@ registerBlockType(
             return [
                 // If block is selected, includes InspectorControls
                 props.isSelected && ( 
-                    <InspectorControls> {/* Whatever is inside this block will be displayed at the sidebar */}
+                    <InspectorControls> {/* Whatever is inside this block will be displayed on the sidebar */}
                         <div id="gbs-block-inspected-inspector-control-wrapper">
                             <label class="blocks-base-control__label" for="mce_2">URL</label>  {/* WordPress class for labels */}
                             <RichText
