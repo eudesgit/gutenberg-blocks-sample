@@ -33,7 +33,7 @@ registerBlockType(
     
         /**
          * Object with all binding elements between the view HTML and the functions
-         * Let's you bind data from DOM elements and storage attributes
+         * It lets you bind data from DOM elements and storage attributes
          */
         attributes: {
             // Number 1
