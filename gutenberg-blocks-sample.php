@@ -10,7 +10,7 @@
  * Plugin Name:       Gutenberg Block Samples
  * Plugin URI:        https://github.com/eudesgit/gutenberg-sample-blocks
  * Description:       Simple plugin that adds Gutenberg block samples
- * Version:           0.7.0
+ * Version:           0.8.0
  * Author:            Eudes
  * Author URI:        https://github.com/eudesgit/
  * License:           GPL2
@@ -153,7 +153,7 @@ class Gutenberg_Blocks_Sample {
         $editor_style_slug = $this->plugin_name . '-' . $block_name . '-editor-style';
 
         // The JS block script
-         wp_enqueue_script( 
+        wp_enqueue_script( 
             $script_slug, 
             plugin_dir_url( __FILE__ ) . $block_name . '/block.build.js', 
             ['wp-blocks', 'wp-i18n', 'wp-element'], // Required scripts for the block
