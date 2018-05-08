@@ -11,7 +11,7 @@ const { registerBlockType, RichText, source } = wp.blocks;
 /**
  * Registers and creates block
  * 
- * Compatible with Gutenberg 2.2.0+
+ * Compatible with Gutenberg 2.8
  * 
  * @param Name Name of the block with a required name space
  * @param ObjectArgs Block configuration {
@@ -58,8 +58,8 @@ registerBlockType(
          */
         edit ( props ) {
             
-            var link_text = props.attributes.link_text // To bind attribute link_text
-            var link_url = props.attributes.link_url // To bind attribute link_url
+            let link_text = props.attributes.link_text // To bind attribute link_text
+            let link_url = props.attributes.link_url // To bind attribute link_url
             
             function onChangeContentURL ( content ) {
                 props.setAttributes({link_url: content})
@@ -81,6 +81,7 @@ registerBlockType(
                     />
                     <label>URL:</label>
                     <RichText
+                        format="string"             // Default is 'element'. Wouldn't work for a tag attribute
                         className={props.className} // Automatic class: gutenberg-blocks-sample-block-editable
                         onChange={onChangeContentURL} // onChange event callback
                         value={link_url} // Binding

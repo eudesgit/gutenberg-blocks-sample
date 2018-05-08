@@ -11,7 +11,7 @@ const { registerBlockType } = wp.blocks;
 /**
  * Registers and creates block
  * 
- * Compatible with Gutenberg 2.2.0+
+ * Compatible with Gutenberg 2.8
  * 
  */
 registerBlockType(

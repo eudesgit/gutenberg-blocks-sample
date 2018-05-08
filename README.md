@@ -9,8 +9,8 @@ A few samples of WordPress Gutenberg blocks.
 
 ## Compatibility
 
-* WordPress 4.0+
-* Gutenberg 2.2+
+* WordPress 4.5+
+* Gutenberg 2.8
 
 ## Getting started
 
@@ -39,3 +39,7 @@ A sample of an editable block.
 ## block-inspected
 
 A sample of an editable block with sidebar inspected controls.
+
+## block-dynamic
+
+A sample of an editable block with PHP server-side rendering.
