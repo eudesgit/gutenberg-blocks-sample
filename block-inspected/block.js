@@ -21,7 +21,7 @@ const {
 /**
  * Registers and creates block
  * 
- * Compatible with Gutenberg 2.2.0+
+ * Compatible with Gutenberg 2.8
  * 
  * @param Name Name of the block with a required name space
  * @param ObjectArgs Block configuration {
@@ -124,28 +124,26 @@ registerBlockType(
             }
 
             return [
-                // If block is selected, includes InspectorControls
-                props.isSelected && ( 
-                    <InspectorControls> {/* Whatever is inside this block will be displayed on the sidebar */}
-                        <div id="gbs-block-inspected-inspector-control-wrapper">
-                            <label class="blocks-base-control__label" for="mce_2">URL</label>  {/* WordPress class for labels */}
-                            <RichText
-                                className="gbs-block-inspected-inspector-control-field"
-                                onChange={onChangeContentURL} // onChange event callback
-                                value={link_url} // Input Binding
-                            />               
-                            <label class="blocks-base-control__label">Button colour</label>  
-                            <ColorPalette // Element Tag for Gutenberg standard colour selector
-                                onChange={onChangeButtonColor} // onChange event callback
-                            />
-                            <label class="blocks-base-control__label">Text colour</label>  
-                            <ColorPalette // Element Tag for Gutenberg standard colour selector
-                                onChange={onChangeTextColor} // onChange event callback
-                            />    
-                        </div>
-                    </InspectorControls>
-                ),
-
+                <InspectorControls> {/* Whatever is inside this block will be displayed on the sidebar */}
+                    <div id="gbs-block-inspected-inspector-control-wrapper">
+                        <label class="blocks-base-control__label" for="mce_2">URL</label>  {/* WordPress class for labels */}
+                        <RichText
+                            format="string"             // Default is 'element'. Wouldn't work for a tag attribute
+                            className="gbs-block-inspected-inspector-control-field"
+                            onChange={onChangeContentURL} // onChange event callback
+                            value={link_url} // Input Binding
+                        />               
+                        <label class="blocks-base-control__label">Button colour</label>  
+                        <ColorPalette // Element Tag for Gutenberg standard colour selector
+                            onChange={onChangeButtonColor} // onChange event callback
+                        />
+                        <label class="blocks-base-control__label">Text colour</label>  
+                        <ColorPalette // Element Tag for Gutenberg standard colour selector
+                            onChange={onChangeTextColor} // onChange event callback
+                        />    
+                    </div>
+                </InspectorControls>
+                ,
                 <div id="gbs-block-inspected-box"> {/* You have to have a wrapper tag when your markup has more than 1 tag */}
                     <a style={button_style}>
                         <RichText
