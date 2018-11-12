@@ -22,6 +22,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+const GBC_VERSION = '0.8.0';
+
 class Gutenberg_Blocks_Sample {
 
 	/**
@@ -104,7 +106,7 @@ class Gutenberg_Blocks_Sample {
             $script_slug, 
             plugin_dir_url( __FILE__ ) . $block_name . '/block.build.js', 
             ['wp-blocks', 'wp-i18n', 'wp-element'], // Required scripts for the block
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/block.build.js')
+            GBC_VERSION
         );
 
         // The block style
@@ -113,7 +115,7 @@ class Gutenberg_Blocks_Sample {
             $style_slug,
             plugin_dir_url( __FILE__ )  . $block_name . '/css/style.css', 
             ['wp-blocks'], // General style
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/css/style.css')
+            GBC_VERSION
         );            
 
         // The block style for the editor only
@@ -121,7 +123,7 @@ class Gutenberg_Blocks_Sample {
             $editor_style_slug,
             plugin_dir_url( __FILE__ ) . $block_name . '/css/editor.css', 
             ['wp-edit-blocks'], // Style for the editor
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/css/editor.css')
+            GBC_VERSION
         );
         
         // Registering the block
@@ -157,7 +159,7 @@ class Gutenberg_Blocks_Sample {
             $script_slug, 
             plugin_dir_url( __FILE__ ) . $block_name . '/block.build.js', 
             ['wp-blocks', 'wp-i18n', 'wp-element'], // Required scripts for the block
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/block.build.js')
+            GBC_VERSION
         );
 
         // The block style
@@ -166,7 +168,7 @@ class Gutenberg_Blocks_Sample {
             $style_slug,
             plugin_dir_url( __FILE__ )  . $block_name . '/css/style.css', 
             ['wp-blocks'], // General style
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/css/style.css')
+            GBC_VERSION
         );            
 
         // The block style for the editor only
@@ -174,7 +176,7 @@ class Gutenberg_Blocks_Sample {
             $editor_style_slug,
             plugin_dir_url( __FILE__ ) . $block_name . '/css/editor.css', 
             ['wp-edit-blocks'], // Style for the editor
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/css/editor.css')
+            GBC_VERSION
         );
         
         // Registering the block
@@ -210,7 +212,7 @@ class Gutenberg_Blocks_Sample {
             $script_slug, 
             plugin_dir_url( __FILE__ ) . $block_name . '/block.build.js', 
             ['wp-blocks', 'wp-i18n', 'wp-element'], // Required scripts for the block
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/block.build.js')
+            GBC_VERSION
         );
 
         // The block style
@@ -219,7 +221,7 @@ class Gutenberg_Blocks_Sample {
             $style_slug,
             plugin_dir_url( __FILE__ )  . $block_name . '/css/style.css', 
             ['wp-blocks'], // General style
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/css/style.css')
+            GBC_VERSION
         );            
 
         // The block style for the editor only
@@ -227,7 +229,7 @@ class Gutenberg_Blocks_Sample {
             $editor_style_slug,
             plugin_dir_url( __FILE__ ) . $block_name . '/css/editor.css', 
             ['wp-edit-blocks'], // Style for the editor
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/css/editor.css')
+            GBC_VERSION
         );
         
         // Registering the block
@@ -263,7 +265,7 @@ class Gutenberg_Blocks_Sample {
             $script_slug, 
             plugin_dir_url( __FILE__ ) . $block_name . '/block.build.js', 
             ['wp-blocks', 'wp-i18n', 'wp-element'], // Required scripts for the block
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/block.build.js')
+            GBC_VERSION
         );
 
         // The block style
@@ -272,7 +274,7 @@ class Gutenberg_Blocks_Sample {
             $style_slug,
             plugin_dir_url( __FILE__ )  . $block_name . '/css/style.css', 
             ['wp-blocks'], // General style
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/css/style.css')
+            GBC_VERSION
         );            
 
         // The block style for the editor only
@@ -280,7 +282,7 @@ class Gutenberg_Blocks_Sample {
             $editor_style_slug,
             plugin_dir_url( __FILE__ ) . $block_name . '/css/editor.css', 
             ['wp-edit-blocks'], // Style for the editor
-            filemtime(plugin_dir_path(__FILE__) . $block_name . '/css/editor.css')
+            GBC_VERSION
         );
         
         // Registering the block
