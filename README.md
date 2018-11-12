@@ -32,6 +32,8 @@ This will generate your block.build.js that is the script that has to be uploade
 
 Block simple provides a sample of a basic non-editable block.
 
+[Read the tutorial](https://medium.com/@eudestwt/how-to-make-a-simple-wordpress-gutenberg-block-cac7e3d68dea)
+
 ## block-editable
 
 A sample of an editable block.
