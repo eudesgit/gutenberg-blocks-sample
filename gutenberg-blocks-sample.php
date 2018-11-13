@@ -9,11 +9,11 @@
  * @wordpress-plugin
  * Plugin Name:       Gutenberg Block Samples
  * Plugin URI:        https://github.com/eudesgit/gutenberg-sample-blocks
- * Description:       Simple plugin that adds Gutenberg block samples
+ * Description:       Simple plugin that adds Gutenberg block samples for WP developers learning and boilerplate
  * Version:           0.8.0
  * Author:            Eudes
  * Author URI:        https://github.com/eudesgit/
- * License:           GPL2
+ * License:           Apache-2.0
  * Text Domain:       gutenberg-blocks-sample
  */
 
