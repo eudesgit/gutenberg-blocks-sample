@@ -102,11 +102,16 @@ class Gutenberg_Blocks_Sample {
         $editor_style_slug = $this->plugin_name . '-' . $block_name . '-editor-style';
 
         // The JS block script
-         wp_enqueue_script( 
+        $script_file = $block_name . '/block.build.js';
+        wp_enqueue_script( 
             $script_slug, 
-            plugin_dir_url( __FILE__ ) . $block_name . '/block.build.js', 
-            ['wp-blocks', 'wp-i18n', 'wp-element'], // Required scripts for the block
-            GBC_VERSION
+            plugin_dir_url(__FILE__) . $script_file, 
+            [  // Dependencies that will have to be imported on the block JS file
+                'wp-blocks', // Required: contains registerBlockType function that creates a block
+                'wp-element', // Required: contains element function that handles HTML markup
+                'wp-i18n', // contains registerBlockType function that creates a block
+            ], 
+            plugin_dir_path(__FILE__) . $script_file
         );
 
         // The block style
@@ -155,11 +160,17 @@ class Gutenberg_Blocks_Sample {
         $editor_style_slug = $this->plugin_name . '-' . $block_name . '-editor-style';
 
         // The JS block script
+        $script_file = $block_name . '/block.build.js';
         wp_enqueue_script( 
             $script_slug, 
-            plugin_dir_url( __FILE__ ) . $block_name . '/block.build.js', 
-            ['wp-blocks', 'wp-i18n', 'wp-element'], // Required scripts for the block
-            GBC_VERSION
+            plugin_dir_url(__FILE__) . $script_file, 
+            [   // Dependencies that will have to be imported on the block JS file
+                'wp-blocks', // Required: contains registerBlockType function that creates a block
+                'wp-element', // Required: contains element function that handles HTML markup
+                'wp-editor', // Required: contains RichText component for editable inputs 
+                'wp-i18n', // contains registerBlockType function that creates a block
+            ], 
+            filemtime(plugin_dir_path(__FILE__) . $script_file)
         );
 
         // The block style
