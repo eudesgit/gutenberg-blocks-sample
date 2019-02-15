@@ -275,7 +275,7 @@ class Gutenberg_Blocks_Sample {
          wp_enqueue_script( 
             $script_slug, 
             plugin_dir_url( __FILE__ ) . $block_name . '/block.build.js', 
-            ['wp-blocks', 'wp-i18n', 'wp-element'], // Required scripts for the block
+            ['wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor'], // Required scripts for the block
             GBC_VERSION
         );
 
